@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Daftar Pelanggan</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Daftar Pelanggan</h1>
+        
+        <div th:text="${message}">Sukses menyimpan data</div>
+        
+        <a href="#" th:href="@{/pelanggan/form}">Tambah Data Pelanggan</a>
+        
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Pendidikan Terakhir</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${daftarPelanggan}">
+                    <td th:text="${p.nama}">Pelanggan 001</td>
+                    <td th:text="${p.email}">pelanggan001@contoh.com</td>
+                    <td th:text="${p.tanggalLahir}">1900-12-31</td>
+                    <td th:text="${p.jenisKelamin}">PRIA</td>
+                    <td th:text="${p.pendidikanTerakhir}">D1</td>
+                    <td>
+                        <a href="#" th:href="@{/pelanggan/form(id=${p.id})}">edit</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+    </body>
+</html>

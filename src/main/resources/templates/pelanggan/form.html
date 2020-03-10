@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Edit Pelanggan</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Form Pelanggan</h1>
+        <form action="#" th:action="@{/pelanggan/form}" th:object="${pelanggan}" method="post">
+            <input th:field="*{id}" type="hidden"/>
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td>Nama</td>
+                        <td><input type="text" th:field="*{nama}" size="50" /></td>
+                        <td>
+                            <ul>
+                                <li th:each="err : ${#fields.errors('nama')}" th:text="${err}" />
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" th:field="*{email}" size="50" /></td>
+                        <td>
+                            <ul>
+                                <li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Lahir</td>
+                        <td><input type="text" th:field="*{tanggalLahir}" size="50" /></td>
+                        <td>
+                            <ul>
+                                <li th:each="err : ${#fields.errors('tanggalLahir')}" th:text="${err}" />
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>
+                            <ul>
+                                <li th:each="jk : ${T(com.irfan.training.testing.database.entity.JenisKelamin).values()}">
+                                    <input type="radio" th:field="*{jenisKelamin}" th:value="${jk}" />
+                                    <label th:text="${jk}">Wireframe</label>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li th:each="err : ${#fields.errors('jenisKelamin')}" th:text="${err}" />
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pendidikan Terakhir</td>
+                        <td>
+                            <select th:field="*{pendidikanTerakhir}">
+                                <option th:each="pend : ${T(com.irfan.training.testing.database.entity.PendidikanTerakhir).values()}" 
+                                        th:value="${pend}" 
+                                        th:text="${pend}">Wireframe</option>
+                            </select>
+                        </td>
+                        <td>
+                            <ul>
+                                <li th:each="err : ${#fields.errors('pendidikanTerakhir')}" th:text="${err}" />
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="submit" value="Simpan" id="simpan"/></td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>
